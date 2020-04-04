@@ -6,7 +6,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 /**
- * 第一种方法：采用AOP方式拦截请求执行的方法，动态切换需要访问的数据源
+ * 第一种方法：采用AOP方式拦截请求执行的方法（controller层），动态切换需要访问的数据源
  */
 //@Aspect
 //@Component

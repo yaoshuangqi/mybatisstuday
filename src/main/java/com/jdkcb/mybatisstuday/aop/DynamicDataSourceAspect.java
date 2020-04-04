@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * 第二种方法：使用AOP拦截我们自定义的注解。进行动态切换数据源
+ * 第二种方法：使用AOP拦截我们自定义的注解（注解在Mapper,Dao层）。进行动态切换数据源
  */
 @Aspect
 @Component
@@ -20,6 +20,7 @@ public class DynamicDataSourceAspect {
 
     @Before("@annotation(dataSource)")//拦截我们自定义的注解
     public void changeDataSource(JoinPoint point, DataSource dataSource) throws Throwable {
+        logger.info("开始拦截自定义的注解DataSource....");
         String value = dataSource.value();
         if (value.equals("primary")){
             DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Primary);
@@ -37,6 +38,6 @@ public class DynamicDataSourceAspect {
     public void restoreDataSource(JoinPoint point, DataSource dataSource) {
         DataSourceType.clearDataBaseType();
 
-
+        logger.info("结束对注解DataSource的拦截，并清理完成....");
     }
 }
