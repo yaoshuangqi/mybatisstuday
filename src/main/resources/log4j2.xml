@@ -77,6 +77,11 @@
             </DefaultRolloverStrategy>
         </RollingFile>
 
+        <!--异步输出到控制台-->
+        <Async name="async" bufferSize="1000" includeLocation="true">
+            <AppenderRef ref="Console" />
+        </Async>
+
     </appenders>
 
     <!--Logger节点用来单独指定日志的形式，比如要为指定包下的class指定不同的日志级别等。-->
@@ -98,6 +103,7 @@
 
         <root level="debug">
             <appender-ref ref="Console"/>
+            <!--<appender-ref ref="async"/>-->
             <appender-ref ref="Filelog"/>
             <appender-ref ref="RollingFileInfo"/>
             <appender-ref ref="RollingFileWarn"/>
